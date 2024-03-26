@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turnero</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #turnos {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h2>Turnero</h2>
+    <form id="turnoForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        
+        <label for="servicio">Servicio:</label>
+        <select id="servicio" required>
+            <option value="">Seleccione un servicio</option>
+            <option value="Consulta médica">Consulta médica</option>
+            <option value="Cita dental">Cita dental</option>
+            <option value="Asesoría legal">Asesoría legal</option>
+            <option value="Soporte técnico">Soporte técnico</option>
+        </select>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+
+        <label for="causa">Causa de visita:</label>
+        <select id="causa" required>
+            <option value="">Seleccione una causa</option>
+            <option value="Envenenamiento por fentanilo">Envenenamiento por fentanilo</option>
+            <option value="Ataque de avestruz">Ataque de avestruz</option>
+            <option value="Caída por escaleras mecánicas">Caída por escaleras mecánicas</option>
+            <option value="Intento de domar unicornio">Intento de domar unicornio</option>
+            <option value="Acoso callejero">Acoso callejero</option>
+            <option value="No la vé">No la vé</option>
+            <option value="Fué Nismanisado">Fué Nismanisado</option>
+            <option value="Vive en Rosario">Vive en Rosario</option>
+            <option value="No llega a fin de mes">No llega a fin de mes</option>
+            <option value="Fraude Fiscal">Fraude Fiscal</option>
+            <option value="Secuestro Alienigena">Secuestro Alienigena</option>
+        </select>
+        
+        <button type="submit">Tomar turno</button>
+    </form>
+
+    <div id="turnos">
+        <h3>Turnos</h3>
+        <ul id="turnoList">
+        </ul>
+    </div>
+
+    <script>
+        var turnosProgramados = [];
+
+        document.getElementById('turnoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var nombre = document.getElementById('nombre').value;
+            var servicio = document.getElementById('servicio').value;
+            var fecha = document.getElementById('fecha').value;
+            var hora = document.getElementById('hora').value;
+            var causa = document.getElementById('causa').value;
+            var momento = new Date();
+
+            if (!nombre || !servicio || !fecha || !hora || !causa) {
+                alert('Por favor, complete todos los campos');
+                return;
+            }
+
+            // Verificar si hay conflicto de horario
+            var nuevoTurno = { fecha: fecha, hora: hora };
+            var conflicto = turnosProgramados.some(function(turno) {
+                return turno.fecha === nuevoTurno.fecha && turno.hora === nuevoTurno.hora;
+            });
+
+            if (conflicto) {
+                alert('Ya hay un turno programado para este especialista a la misma hora. Por favor, elige otra hora.');
+                return;
+            }
+
+            var turno = {
+                nombre: nombre,
+                servicio: servicio,
+                fecha: fecha,
+                hora: hora,
+                causa: causa,
+                momento: momento
+            };
+
+            turnosProgramados.push(nuevoTurno); // Registrar el nuevo turno programado
+            agregarTurno(turno);
+            document.getElementById('turnoForm').reset();
+        });
+
+        function agregarTurno(turno) {
+            var turnoList = document.getElementById('turnoList');
+            var li = document.createElement('li');
+            li.textContent = turno.nombre + ' - ' + turno.servicio + ' - Fecha: ' + turno.fecha + ', Hora: ' + turno.hora + ', Causa: ' + turno.causa + ' - Momento: ' + turno.momento.toLocaleString();
+            turnoList.appendChild(li);
+        }
+    </script>
+</body>
+</html>
