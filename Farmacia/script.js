@@ -40,7 +40,7 @@ function generateCross(event) {
 header.addEventListener('mouseover', () => {
   if (!timer) {
     timer = setInterval(() => {
-      generateCross({ offsetX: Math.random() * header.offsetWidth, offsetY: Math.random() * header.offsetHeight });
+      generateCross({ offsetX: Math.random() * header.offsetWidth, offsetY: Math.random() * header.offsetHeight-40 });
     }, 500); // Genera una nueva cruz cada 0.5 segundos mientras el mouse está sobre el header
   }
 });
@@ -69,3 +69,65 @@ function updateClock() {
   // Ejecutar el reloj automaticamente al cargar la página
   updateClock();
   
+// Lista de productos de belleza
+const beautyProducts = [
+  { name: 'Producto X', image: '../../CodoACodo/Imagenes/productox.jpg', price: '$XX' },
+  { name: 'Shampoo', image: '../../CodoACodo/Imagenes/shampoo.jpg', price: '$123' },
+  { name: 'pastadental', image: '../../CodoACodo/Imagenes/pastadental.jpg', price: '$132' },
+  { name: 'curitas', image: '../../CodoACodo/Imagenes/curitas.jpg', price: '$213' },
+  { name: 'cotonetes', image: '../../CodoACodo/Imagenes/cotonetes.jpg', price: '$231'},
+  { name: 'aspirina', image: '../../CodoACodo/Imagenes/aspirina.jpg', price: '$312'},
+  { name: 'nivea', image: '../../CodoACodo/Imagenes/nivea.jpg', price: '$321'},
+  // Agregar productos según sea necesario
+];
+
+// Función para mostrar productos del 'Beauty'
+function displayBeautyProducts() {
+  const beautyContainer = document.getElementById('beauty-products');
+  // Mezclar aleatoriamente la lista de productos
+  const shuffledProducts = beautyProducts.sort(() => Math.random() - 0.5);
+  beautyContainer.innerHTML = ''; // Limpiar contenedor antes de agregar los productos
+
+  shuffledProducts.forEach(product => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('product');
+
+    const productImage = document.createElement('img');
+    productImage.src = product.image;
+    productImage.alt = product.name;
+
+    const productName = document.createElement('p');
+    productName.textContent = product.name;
+
+    const productPrice = document.createElement('p');
+    productPrice.textContent = product.price;
+
+    productElement.appendChild(productImage);
+    productElement.appendChild(productName);
+    productElement.appendChild(productPrice);
+
+    beautyContainer.appendChild(productElement);
+  });
+}
+
+// Mostrar productos de 'Beauty' al cargar la página
+displayBeautyProducts();
+// Función para mostrar u ocultar productos del 'Beauty' según la ubicación del usuario en la página
+function toggleBeautyProductsVisibility() {
+  const beautySection = document.getElementById('beauty');
+  const beautyProductsContainer = document.getElementById('beauty-products');
+  const sectionRect = beautySection.getBoundingClientRect();
+
+  // Verificar si la sección "Beauty" está visible en la ventana gráfica
+  if (sectionRect.top < window.innerHeight && sectionRect.bottom >= 0) {
+    beautyProductsContainer.classList.remove('hidden'); // Mostrar productos
+  } else {
+    beautyProductsContainer.classList.add('hidden'); // Ocultar productos
+  }
+}
+
+// Ejecutar la función al desplazarse por la página
+window.addEventListener('scroll', toggleBeautyProductsVisibility);
+
+// Mostrar u ocultar productos al cargar la página
+toggleBeautyProductsVisibility();
