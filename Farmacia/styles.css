@@ -143,3 +143,23 @@ body {
 .hidden {
   display: none;
 }
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.buttons-container button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #0088ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttons-container button:hover {
+  background-color: #d60ba8;
+}
+

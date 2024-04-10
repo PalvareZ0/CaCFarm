@@ -131,3 +131,70 @@ window.addEventListener('scroll', toggleBeautyProductsVisibility);
 
 // Mostrar u ocultar productos al cargar la página
 toggleBeautyProductsVisibility();
+// Función para generar un color hexadecimal aleatorio
+function randomHexColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+// Función para animar el scroll de la página hacia arriba
+function scrollToTop() {
+  const scrollStep = -window.scrollY / (500 / 15); // Velocidad del scroll
+
+  const scrollInterval = setInterval(() => {
+    if (window.scrollY !== 0) {
+      window.scrollBy(0, scrollStep);
+    } else {
+      clearInterval(scrollInterval);
+    }
+  }, 15);
+}
+
+// Asignar evento click al botón que regresa al principio
+const backButton = document.getElementById('back-to-top-button');
+backButton.addEventListener('click', scrollToTop);
+
+// Obtener el botón por su ID
+const openNewPageButton = document.getElementById('turnos-button');
+
+// Agregar un evento de clic al botón
+openNewPageButton.addEventListener('click', function() {
+  // Ruta al archivo HTML que deseas abrir en una nueva pestaña
+  const url = 'turnero.html';
+
+  // Abrir la nueva página en una nueva pestaña
+  window.open(url, '_blank');
+});
+
+// Asegurar que al recargar la página, se inicie desde arriba
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+ // Botón "Juegos"
+ const juegosButton = document.getElementById('juegos-button');
+
+ juegosButton.addEventListener('click', function() {
+   // Abrir la página de juegos
+   window.open('juegos.html', '_blank');
+
+  })
+  
+ // Función para abrir la ventana emergente del sudoku
+ function openSudokuPopup() {
+  // Configurar las dimensiones de la ventana emergente
+  const width = 400;
+  const height = 400;
+  const left = (window.innerWidth - width) / 2;
+  const top = (window.innerHeight - height) / 2;
+  const options = `width=${width},height=${height},left=${left},top=${top}`;
+
+  // Abrir la ventana emergente con el tablero de sudoku
+  const sudokuWindow = window.open('sudoku.html', 'sudokuPopup', options);
+  sudokuWindow.focus(); // Dar foco a la ventana emergente
+}
+
+// Obtener el botón "Sudoku"
+const sudokuButton = document.getElementById('sudoku-button');
+
+// Agregar un evento de clic al botón
+sudokuButton.addEventListener('click', openSudokuPopup);
