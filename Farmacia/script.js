@@ -1,6 +1,10 @@
+//
+
 const header = document.querySelector('.header');
 let crossesCount = 0;
 let timer;
+
+// hacer la cruz
 
 function generateCross(event) {
   if (crossesCount < 12) {
@@ -37,6 +41,8 @@ function generateCross(event) {
   }
 }
 
+// la cruz solo se muestra mientras el usuario pase el mouse por el banner
+
 header.addEventListener('mouseover', () => {
   if (!timer) {
     timer = setInterval(() => {
@@ -63,21 +69,23 @@ function updateClock() {
     clockTime.textContent = `Hoy es ${day}, ${date} de ${month} de ${year} ${hour}:${minute}`;
   }
   
+  // Reloj
   // Actualizar el reloj cada segundo
   setInterval(updateClock, 1000);
   
   // Ejecutar el reloj automaticamente al cargar la página
   updateClock();
   
-// Lista de productos de belleza
+// beauty
+// Lista de productos
 const beautyProducts = [
   { name: 'Producto X', image: '../../CodoACodo/Imagenes/productox.jpg', price: '$XX' },
   { name: 'Shampoo', image: '../../CodoACodo/Imagenes/shampoo.jpg', price: '$123' },
-  { name: 'pastadental', image: '../../CodoACodo/Imagenes/pastadental.jpg', price: '$132' },
-  { name: 'curitas', image: '../../CodoACodo/Imagenes/curitas.jpg', price: '$213' },
-  { name: 'cotonetes', image: '../../CodoACodo/Imagenes/cotonetes.jpg', price: '$231'},
-  { name: 'aspirina', image: '../../CodoACodo/Imagenes/aspirina.jpg', price: '$312'},
-  { name: 'nivea', image: '../../CodoACodo/Imagenes/nivea.jpg', price: '$321'},
+  { name: 'Pasta Dental', image: '../../CodoACodo/Imagenes/pastadental.jpg', price: '$132' },
+  { name: 'Curitas', image: '../../CodoACodo/Imagenes/curitas.jpg', price: '$213' },
+  { name: 'Cotonetes', image: '../../CodoACodo/Imagenes/cotonetes.jpg', price: '$231'},
+  { name: 'Aspirina', image: '../../CodoACodo/Imagenes/aspirina.jpg', price: '$312'},
+  { name: 'Nivea', image: '../../CodoACodo/Imagenes/nivea.jpg', price: '$321'},
   // Agregar productos según sea necesario
 ];
 
@@ -198,3 +206,6 @@ const sudokuButton = document.getElementById('sudoku-button');
 
 // Agregar un evento de clic al botón
 sudokuButton.addEventListener('click', openSudokuPopup);
+
+// Calesita+Banner
+

@@ -163,3 +163,50 @@ body {
   background-color: #d60ba8;
 }
 
+p {
+  color: #000;
+  opacity: 1; /* Asegura que la opacidad del texto sea 100% */
+  visibility: visible; /* Asegura que el texto sea visible */
+}
+
+.carrousel {
+  width: 90%;
+  background-color: #eda4df;
+
+}
+
+.carrousel .grande {
+  width: 500%;
+  background-color: orange;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  transition: all .5s ease;
+  transform: translateX(0%);
+
+}
+
+.carrousel .img {
+  width: calc(100% / 5);
+
+}
+
+.carrousel .puntos {
+  width: 100%;
+  padding: 1em;
+  background-color: #000;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.carrousel .punto {
+  width: 1em;
+  height: 1em;
+  background-color: #fff;
+
+}
